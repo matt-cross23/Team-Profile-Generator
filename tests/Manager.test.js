@@ -1,20 +1,41 @@
-const Manager = require("../lib/Manager");
-const Employee = require('../lib/Employee");
+const Manager = require("../lib/manager");
+const Employee = require('../lib/employee');
 
 describe("Should return office number", () => {
-const testNumber = 92
-const employeeOffice = new Manager("Matthew", 23, "matthewcross1017@gmail.com", testNumber);
-expect(employeeOffice.officeNumber).toBe(testNumber);
+  it("Manager's office #", () => {
+  const testNumber = 92;
+  const employeeOffice = new Manager(
+    "Matthew",
+    23,
+    "matthewcross1017@gmail.com",
+    testNumber,
+  );
+  expect(employeeOffice.officeNum).toBe(testNumber);
+  })
 });
 
 describe("Should return Manager", () => {
-const testName = "Manager"
-const employeeRole = new Manager("Matthew", 45, "matthewcross1017@gmail.com", 56);
-expect(employeRole.getRole()).toBe(testName);
+  it("Should return that employee is a manager" , () => {;
+  const testName = "Manager";
+  const employeeRole = new Manager(
+    "Matthew",
+    45,
+    "matthewcross1017@gmail.com",
+    56
+  );
+  expect(employeeRole.getRole()).toBe(testName);
+  })
 });
 
 describe("Should return office number using getOffice()", () => {
-const testOffice = 56;
-const employeeONumber = new Manager ("Matthew", 86, "matthewcross1017@gmail.com", testOffice);
-expect(employeeONumber.getOffice()).toBe(testOffice);
+  it("Should return email of employee", () => {;
+  const testOffice = 56;
+  const employeeONumber = new Manager(
+    "Matthew",
+    86,
+    "matthewcross1017@gmail.com",
+    testOffice
+  );
+  expect(employeeONumber.getOffice()).toBe(testOffice);
+  })
 });
