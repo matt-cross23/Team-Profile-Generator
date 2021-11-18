@@ -1,28 +1,29 @@
-function renderManager(){
-
-}
-function renderEmployee(){
-
-}
-function renderInfo(){
-
-}
 
 function generateHTML(data){
   return `
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Team Profile</title>
-      
-  </head>
-  <body>
-  
-  </body>
-  </html>
+const generateHTML = ({ name, ID, email, Office-Number, github, school }) =>
+  `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Employee: ${name}</h1>
+    <p class="lead">ID ${ID}.</p>
+    <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
+    <ul class="list-group">
+      <li class="list-group-item">Their GitHub username is ${github}</li>
+      <li class="list-group-item">LinkedIn: ${linkedin}</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>`;
   `
 
 }
