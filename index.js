@@ -22,7 +22,7 @@ const managerQuestions = [
   {
     type: "input",
     message: "Office number",
-    name: "Office Number",
+    name: "Office-Number",
   },
 ];
 const startMenuQuestions = [
@@ -37,7 +37,7 @@ const startMenuQuestions = [
 const engineerQuestions = [
   {
     type: "input",
-    message: "What is your name?",
+    message: "What is their name?",
     name: "name",
   },
   {
@@ -103,20 +103,17 @@ function menuPrompt() {
       default:
         const generatedHTML = generateHTML(answers);
         console.log(generatedHTML);
-
-        fs.writeFile("./dist/scorecard.html", generatedHTML, function (err) {
-          err
-            ? console.log("error")
-            : console.log("You've created the HTML file!");
-        });
-    }
-  });
-}
-
+    };
+  
 function init() {
   inquirer.prompt(managerQuestions).then((answers) => {
     employees.push(answers);
     menuPrompt();
+  .then((answers => fsfs.writeFileSync("./dist/scorecard.html", generatedHTML, function (err) {
+     err
+     ? console.log("error")
+     : console.log("You've created the HTML file!");
+    });
   });
 }
 init();
