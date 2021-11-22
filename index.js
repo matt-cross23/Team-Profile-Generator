@@ -109,7 +109,7 @@ function init() {
   inquirer.prompt(managerQuestions).then((answers) => {
     employees.push(answers);
     menuPrompt();
-  .then((answers => fsfs.writeFileSync("./dist/scorecard.html", generatedHTML, function (err) {
+  .then((answers => fs.writeFileSync("./dist/scorecard.html", generatedHTML, function (err) {
      err
      ? console.log("error")
      : console.log("You've created the HTML file!");
