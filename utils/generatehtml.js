@@ -2,7 +2,7 @@
 function generateHTML(data){
   return `
 const generateHTML = ({ name, ID, email, Office-Number, github, school }) =>
-  `<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -24,7 +24,7 @@ const generateHTML = ({ name, ID, email, Office-Number, github, school }) =>
 </div>
 </body>
 </html>`;
-  `
+
 
 }
 module.exports = generateHTML

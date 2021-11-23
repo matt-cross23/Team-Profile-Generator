@@ -104,12 +104,14 @@ function menuPrompt() {
         const generatedHTML = generateHTML(answers);
         console.log(generatedHTML);
     };
+  });
+}
   
 function init() {
   inquirer.prompt(managerQuestions).then((answers) => {
     employees.push(answers);
     menuPrompt();
-  .then((answers => fs.writeFileSync("./dist/scorecard.html", generatedHTML, function (err) {
+  fs.writeFileSync("./dist/scorecard.html", generateHTML, function (err) {
      err
      ? console.log("error")
      : console.log("You've created the HTML file!");
