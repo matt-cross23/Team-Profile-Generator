@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateHTML = require("./utils/generatehtml");
+const generateHTML = require("./utils/generatehtml.js");
 const employees = [];
 
 const managerQuestions = [
@@ -111,7 +111,7 @@ function init() {
   inquirer.prompt(managerQuestions).then((answers) => {
     employees.push(answers);
     menuPrompt();
-  fs.writeFileSync("./dist/scorecard.html", generateHTML, function (err) {
+  fs.writeFileSync("./dist/scorecard.html", generateHTML(answers), function (err) {
      err
      ? console.log("error")
      : console.log("You've created the HTML file!");
