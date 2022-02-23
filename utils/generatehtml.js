@@ -3,11 +3,11 @@ const createManager = (manager) => {
 return `
 <div class="card manager-card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">Name: ${manager.getName()}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Role: ${manager.getRole()}</h6>
-    <p class="card-text">Find me at Office # ${manager.getOfficeNumber()}</p>
-    <p class="card-text">ID: ${manager.getID()}</p>
-    <a href="#${manager.getEmail()}" class="card-link">${manager.getEmail()}</a>
+    <h5 class="card-title">Name: ${manager.name}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Role: ${manager.ID}</h6>
+    <p class="card-text">Find me at Office # ${manager.Office-Number}</p>
+    <p class="card-text">ID: ${manager.ID}</p>
+    <a href="#${manager.Email}" class="card-link">${manager.Email}</a>
   </div>
 </div>
 `;
@@ -16,11 +16,11 @@ const createEngineer = (engineer) => {
 return `
 <div class="card engineer-card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">Name: ${engineer.getName()}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Role: ${engineer.getRole()}</h6>
-    <a href="https://github.com/${engineer.getGithub()}" class="card-link">${engineer.getGithub()}</a>
-    <p class="card-text">ID: ${engineer.getID()}</p>
-    <a href="${engineer.getEmail()}" class="card-link">${engineer.getEmail()}</a>
+    <h5 class="card-title">Name: ${engineer.Name}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Role: ${engineer.Role}</h6>
+    <a href="https://github.com/${engineer.Github}" class="card-link">${engineer.Github}</a>
+    <p class="card-text">ID: ${engineer.ID}</p>
+    <a href="${engineer.Email}" class="card-link">${engineer.Email}</a>
   </div>
 </div>
 `;
@@ -30,19 +30,50 @@ return `
 return `
 <div class="card intern-card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">Name: ${intern.getName()}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Role: ${intern.getRole()}</h6>
-    <p class="card-text">I am atending ${intern.getSchool()}</p>
-    <p class="card-text">ID: ${intern.getID()}</p>
-    <a href="#{intern.getEmail()}" class="card-link">${intern.getEmail()}</a>
+    <h5 class="card-title">Name: ${intern.Name}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Role: ${intern.Role}</h6>
+    <p class="card-text">I am atending ${intern.School}</p>
+    <p class="card-text">ID: ${intern.ID}</p>
+    <a href="#{intern.getEmail()}" class="card-link">${intern.Email}</a>
   </div>
 </div>
 `;
 };
+<<<<<<< HEAD
  return [createManager(manager), createEngineer(engineer), createIntern(intern)] 
+=======
+
 }
-  
-module.exports = teamProfile =>{
+
+const generateHTML = (employees) => {
+cardArray = [];
+  for(let i = 0; i< employees.length; i++) {
+  const employee = employees[i]
+  const role = employees.getRole();
+  if (role === 'manager')
+    const managerHTML = createManager(employee);
+    
+    cardArray.push(managerHTML)
+  }
+   if (role === 'intern')
+    const internHTML = createIntern(employee);
+    
+    cardArray.push(internHTML)
+}
+ if (role === 'engineer')
+    const engineerHTML = createEngineer(employee);
+    
+    cardArray.push(engineerHTML)
+>>>>>>> 43d7991e803ce814f72ae3382d7200085b49fec7
+}
+}
+
+const employeeHTML = cardArray.join('');
+
+const generateHTML = function (employeeHTML);
+return generateHTML
+
+const generateHTML = (employeeHTML) =>{
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +89,11 @@ module.exports = teamProfile =>{
     <h1 class="display-4">The Team: </h1>
   </div>
 </div>
+<<<<<<< HEAD
  ${generateHTML(teamProfile)}
+=======
+$(employeeHTML)
+>>>>>>> 43d7991e803ce814f72ae3382d7200085b49fec7
 </body>
 </html>
 `;
