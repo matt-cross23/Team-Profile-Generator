@@ -39,7 +39,7 @@ const startMenuQuestions () => {
     return inquirer.prompt ([
     type: "list",
     message: "What's the empolyee's role?",
-    choices: ["engineer", "Intern"],
+    choices: ["engineer", "intern"],
     name: "Role",
   },
       
@@ -97,7 +97,8 @@ let newEmployee;
     console.log(newEmployee)
     }
   employees.push(newEmployee)
-if(endStartMenu) {
+
+  if(endStartMenu) {
   return newEmployee(employees)
 } else {
   console.log(employees);
