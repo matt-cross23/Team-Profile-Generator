@@ -39,7 +39,7 @@ return `
 </div>
 `;
 };
- return [managers, engineer, intern] 
+ return [createManager(manager), createEngineer(engineer), createIntern(intern)] 
 }
   
 module.exports = teamProfile =>{
@@ -58,7 +58,7 @@ module.exports = teamProfile =>{
     <h1 class="display-4">The Team: </h1>
   </div>
 </div>
- ${generateHTML(teamProfile)
+ ${generateHTML(teamProfile)}
 </body>
 </html>
 `;
