@@ -42,7 +42,7 @@ const createIntern = (intern) => {
 `;
 };
 
-const generateHTML = (data) => {
+function generateTeam (data) {
   let cardArray = [];
 console.log("This is the array before iterating", data)
   for (let i = 0; i < data.length; i++) {
@@ -68,14 +68,14 @@ console.log("This is the array before iterating", data)
       cardArray.push(engineerHTML);
     }
   }
-
+  
   const employeeHTML = cardArray.join("");
-
-  const generateScorecard = generatehtml(employeeHTML);
-  return generateScorecard;
+console.log(employeeHTML, "Card HTML")
+return employeeHTML
 };
 
-const generatehtml = (employeeHTML) => {
+function generateHTML(data) {
+  console.log(data)
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +91,7 @@ const generatehtml = (employeeHTML) => {
     <h1 class="display-4">The Team: </h1>
   </div>
 </div>
-${employeeHTML}
+${generateTeam(data)}
 </body>
 </html>
 `;

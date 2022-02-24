@@ -113,8 +113,8 @@ const startMenuQuestions = () =>{
     });
 };
 
-const writeFileSync = (data) => {
-  fs.writeFileSync("./dist/scorecard.html", data, "utf8", function (err) {
+function writeToFile(data) {
+  writeToFile("./dist/scorecard.html", generateHTML(data), "utf8", function (err) {
     err ? console.log("error") : console.log("You've created the HTML file!");
   });
 };
@@ -127,7 +127,7 @@ managerQuestions()
     return generateHTML(employeeArray);
   })
   .then((data) => {
-    return writeFileSync(data, "utf8");
+    return writeToFile(data, "utf8");
   })
   .catch((err) => {
     console.log(err);
