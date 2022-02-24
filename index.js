@@ -1,224 +1,142 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const Engineer = require('./lib/engineer')
+const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const Manager = require("./lib/manager");
-const generateHTML = require("./utils/generatehtml.js");
+const generateHTML = require("./utils/generatehtml");
 
-const employees = [];
+const employeeArray = [];
 
-const managerQuestions = () => { 
-  return inquirer.prompt([
-  {
-    type: "input",
-    message: "What is the manager's name?",
-    name: "Name",
-  },
-  {
-    type: "input",
-    message: "Enter the manager's ID",
-    name: "ID",
-  },
-  {
-    type: "input",
-    message: "Enter your email address",
-    name: "Email",
-  },
-  {
-    type: "input",
-    message: "Enter the Office number",
-    name: "Officenumber",
-  },
-])
-  .then(answers => {
-  const {Name, ID, Email, Officenumber} = answers
-  const newManager = new Manager( Name, ID, Email, Office-Number);
-    employees.push(newManager);
-    console.log(newManager);
-  });
-};
-const startMenuQuestions = () => {
-  console.log('Add more employees or finish!');
-    
-    return inquirer.prompt ([
+const managerQuestions = async () => {
+  return inquirer
+    .prompt([
       {
-    type: "list",
-    message: "What's the empolyee's role?",
-    choices: ["engineer", "intern"],
-    name: "Role",
-  },
-      
-       {
-    type: "input",
-    message: "Enter the employee's name",
-    name: "Name",
-  },
+        type: "input",
+        message: "What is the manager's name?",
+        name: "Name",
+      },
       {
-    type: "input",
-    message: "Enter the employee's ID",
-    name: "ID",
-  },
-     {
-    type: "input",
-    message: "Enter them employee's email address",
-    name: "Email",
-  },
-     {
-    type: "input",
-    when: (input) => input.role === "engineer",
-    message: "What's the employee's github?",
-    name: "Github",
-  },
-     {
-    type: "input",
-    when: (input) => input.role === "intern",
-    message: "What's the enployee's school?",
-    name: "School",
-  },
-    {
-      type: 'confirm',
-      name: 'endStartMenu',
-      message: 'Press Y to add more memebers',
-      default: false
-    }
-])
-.then(employeeList => {
-let {
-Role,
-Name,
-ID,
-Email,
-Github,
-School,
-endStartMenu
-} = employeeList
-let newEmployee;
-    if ("role === engineer"){
-        newEmployee = new Engineer (Name, ID, Email, Github)
-    console.log(newEmployee)
-    }
-    else if ("role === intern"){
-        new newEmployee = new Intern (Name, ID, Email, School)
-    console.log(newEmployee)
-    }
-  employees.push(newEmployee)
-
-  if(endStartMenu) {
-  return newEmployee(employees)
-} else {
-  console.log(employees);
-  return employees
-} 
-})
-};
-
-managerQuestions()
-.then(endStartMenu)
- .then(employees => { 
-return generateHTML(employees);
-})
-.then(HTML => {
-  fs.writeFileSync("./dist/scorecard.html", generateHTML(HTML), function (err) {
-     err
-     ? console.log("error")
-     : console.log("You've created the HTML file!");
+        type: "input",
+        message: "Enter the manager's ID",
+        name: "ID",
+      },
+      {
+        type: "input",
+        message: "Enter your email address",
+        name: "Email",
+      },
+      {
+        type: "input",
+        message: "Enter the Office number",
+        name: "OfficeNumber",
+      },
+    ])
+    .then((managerAnswers) => {
+      const { Name, ID, Email, OfficeNumber, role} = managerAnswers;
+      const newManager = new Manager(Name, ID, Email, OfficeNumber, role);
+      employeeArray.push(newManager);
+      console.log(newManager, "How is being a manager?");
     });
+};
+
+const startMenuQuestions = async () => {
+  console.log("Add more employees or finish!");
+
+  return await inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "What's the empolyee's role?",
+        choices: ["engineer", "intern"],
+        name: "role",
+      },
+
+      {
+        type: "input",
+        message: "Enter the employee's name",
+        name: "Name",
+      },
+      {
+        type: "input",
+        message: "Enter the employee's ID",
+        name: "ID",
+      },
+      {
+        type: "input",
+        message: "Enter them employee's email address",
+        name: "Email",
+      },
+      {
+        type: "input",
+        when: (input) => input.role === "engineer",
+        message: "What's the employee's github?",
+        name: "Github",
+      },
+      {
+        type: "input",
+        when: (input) => input.role === "intern",
+        message: "What's the employee's school?",
+        name: "School",
+      },
+      {
+        type: "input",
+        name: "role",
+        message: "Please enter your role",
+      },
+      {
+        type: "confirm",
+        name: "endStartMenu",
+        message: "Press Y to add more employees",
+        default: true,
+      },
+    ])
+    .then((employeeAnswers) => {
+      let { Name, ID, Email, Github, School, endStartMenu, Role } =
+        employeeAnswers;
+
+      let newEmployee;
+
+      if (Role == "engineer") {
+        newEmployee = new Engineer(Name, ID, Email, Github);
+        
+        console.log(newEmployee, "New Engineer added");
+
+      } else if (Role === "intern") {
+        newEmployee = new Intern(Name, ID, Email, School);
+        console.log(newEmployee, "New Intern added");
+      }
+
+      employeeArray.push(newEmployee);
+      if (endStartMenu) {
+        console.log(newEmployee, "Your employee was added");
+        return startMenuQuestions();
+      } else {
+        console.log(employeeArray);
+        return employeeArray;
+      }
+    });
+};
+
+const writeFileSync = (data) => {
+  fs.writeFileSync("./dist/scorecard.html", generateHTML(data), "utf8", function (err) {
+    err ? console.log("error") : console.log("You've created the HTML file!");
   });
+};
 
+function init (){
+managerQuestions()
+  .then(startMenuQuestions)
+  .then((employeeArray) => {
+    console.log("Your team is", employeeArray, "!");
+   console.log( typeof employeeArray)
+    return generateHTML(employeeArray);
+  })
+  .then((data) => {
+    return writeFileSync(data, "utf8");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
 
-  
-// const engineerQuestions = [
-//   {
-//     type: "input",
-//     message: "What is their name?",
-//     name: "name",
-//   },
-//   {
-//     type: "input",
-//     message: "Employee ID?",
-//     name: "ID",
-//   },
-//   {
-//     type: "input",
-//     message: "What is your email address?",
-//     name: "email",
-//   },
-//   {
-//     type: "input",
-//     message: "What is your github",
-//     name: "github",
-//   },
-// ];
-// const internQuestions = [
-//   {
-//     type: "input",
-//     message: "What is your name?",
-//     name: "name",
-//   },
-//   {
-//     type: "input",
-//     message: "Employee ID?",
-//     name: "ID",
-//   },
-//   {
-//     type: "input",
-//     message: "What is your email address?",
-//     name: "email",
-//   },
-//   {
-//     type: "input",
-//     message: "What school did you attend",
-//     name: "school",
-//   },
-  
- 
-// ]);
-  
-  
-  
-  
-  
-// function engineerPrompt() {
-//   inquirer.prompt(engineerQuestions).then((answers) => {
-//     employees.push(answers);
-//     menuPrompt()
-//   });
-// }
-// function internPrompt() {
-//   inquirer.prompt(internQuestions).then((answers) => {
-//     employees.push(answers);
-//     menuPrompt()
-//   });
-// }
-// function menuPrompt() {
-//   inquirer.prompt(startMenuQuestions).then((answers) => {
-//     console.log(answers)
-//     switch (answers.Menu) {
-//       case "engineer":
-//         engineerPrompt();
-//         break;
-//       case "Intern":
-//         internPrompt();
-//         break;
-//       default:
-//         const generatedHTML = generateHTML(answers);
-//         console.log(generatedHTML);
-//     };
-//   });
-// }
-  
-// function init() {
-//   managerQuestions()
-//     .then((answers) 
-//     .then(teamArray ->{
-//     )      => {
-//     employees.push(answers);
-//     menuPrompt();
-//   fs.writeFileSync("./dist/scorecard.html", generateHTML(answers), function (err) {
-//      err
-//      ? console.log("error")
-//      : console.log("You've created the HTML file!");
-//     });
-//   });
-// }
-// init();
+init()

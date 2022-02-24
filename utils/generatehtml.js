@@ -1,11 +1,10 @@
-const generateHTML = (team) => {
 const createManager = (manager) => {
-return `
+  return `
 <div class="card manager-card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">Name: ${manager.name}</h5>
+    <h5 class="card-title">Name: ${manager.Name}</h5>
     <h6 class="card-subtitle mb-2 text-muted">Role: ${manager.ID}</h6>
-    <p class="card-text">Find me at Office # ${manager.Office-Number}</p>
+    <p class="card-text">Find me at Office # ${manager.OfficeNumber}</p>
     <p class="card-text">ID: ${manager.ID}</p>
     <a href="#${manager.Email}" class="card-link">${manager.Email}</a>
   </div>
@@ -13,12 +12,14 @@ return `
 `;
 };
 const createEngineer = (engineer) => {
-return `
+  return `
 <div class="card engineer-card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Name: ${engineer.Name}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Role: ${engineer.Role}</h6>
-    <a href="https://github.com/${engineer.Github}" class="card-link">${engineer.Github}</a>
+    <h6 class="card-subtitle mb-2 text-muted">Role: ${engineer.getRole()}</h6>
+    <a href="https://github.com/${engineer.Github}" class="card-link">${
+    engineer.Github
+  }</a>
     <p class="card-text">ID: ${engineer.ID}</p>
     <a href="${engineer.Email}" class="card-link">${engineer.Email}</a>
   </div>
@@ -26,8 +27,8 @@ return `
 `;
 };
 
-  const createIntern = (intern) => {
-return `
+const createIntern = (intern) => {
+  return `
 <div class="card intern-card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Name: ${intern.Name}</h5>
@@ -39,41 +40,38 @@ return `
 </div>
 `;
 };
-<<<<<<< HEAD
- return [createManager(manager), createEngineer(engineer), createIntern(intern)] 
-=======
 
-}
+const generateHTML = (data) => {
+  cardArray = [];
 
-const generateHTML = (employees) => {
-cardArray = [];
-  for(let i = 0; i< employees.length; i++) {
-  const employee = employees[i]
-  const role = employees.getRole();
-  if (role === 'manager')
-    const managerHTML = createManager(employee);
-    
-    cardArray.push(managerHTML)
+  for (let i = 0; data.length; i++) {
+    console.log("Data here", data, 'Iterating!')
+    const employee = data[i];
+    const role = employee.role;
+    if (role === "Manager") {
+      const managerHTML = createManager(employee);
+      console.log(managerHTML);
+      cardArray.push(managerHTML);
+    }
+    if (role === "Intern") {
+      const internHTML = createIntern(employee);
+      console.log(internHTML);
+      cardArray.push(internHTML);
+    }
+    if ("Role" === "Engineer") {
+     const engineerHTML = createEngineer(employee);
+      console.log(engineerHTML);
+      cardArray.push(engineerHTML);
+    }
   }
-   if (role === 'intern')
-    const internHTML = createIntern(employee);
-    
-    cardArray.push(internHTML)
-}
- if (role === 'engineer')
-    const engineerHTML = createEngineer(employee);
-    
-    cardArray.push(engineerHTML)
->>>>>>> 43d7991e803ce814f72ae3382d7200085b49fec7
-}
-}
 
-const employeeHTML = cardArray.join('');
+  const employeeHTML = cardArray.join("");
 
-const generateHTML = function (employeeHTML);
-return generateHTML
+  const generateScorecard = generatehtml(employeeHTML);
+  return generateScorecard;
+};
 
-const generateHTML = (employeeHTML) =>{
+const generatehtml = (employeeHTML) => {
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -89,13 +87,10 @@ const generateHTML = (employeeHTML) =>{
     <h1 class="display-4">The Team: </h1>
   </div>
 </div>
-<<<<<<< HEAD
- ${generateHTML(teamProfile)}
-=======
-$(employeeHTML)
->>>>>>> 43d7991e803ce814f72ae3382d7200085b49fec7
+${employeeHTML}
 </body>
 </html>
 `;
-}
+};
 
+module.exports = generateHTML;
