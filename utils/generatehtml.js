@@ -75,7 +75,7 @@ return employeeHTML
 };
 
 function generateHTML(data) {
-  console.log(data)
+  console.log("This is your html", data)
   return `
 <!DOCTYPE html>
 <html lang="en">
