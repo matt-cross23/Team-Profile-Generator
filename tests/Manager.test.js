@@ -27,15 +27,3 @@ describe("Should return Manager", () => {
   })
 });
 
-describe("Should return office number using getOffice()", () => {
-  it("Should return email of employee", () => {;
-  const testOffice = 56;
-  const employeeONumber = new Manager(
-    "Matthew",
-    86,
-    "matthewcross1017@gmail.com",
-    testOffice
-  );
-  expect(employeeONumber.getOffice()).toBe(testOffice);
-  })
-});

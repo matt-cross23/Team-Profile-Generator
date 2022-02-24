@@ -1,12 +1,13 @@
+
 const createManager = (manager) => {
   return `
 <div class="card manager-card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">Name: ${manager.Name}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Role: ${manager.ID}</h6>
-    <p class="card-text">Find me at Office # ${manager.OfficeNumber}</p>
-    <p class="card-text">ID: ${manager.ID}</p>
-    <a href="#${manager.Email}" class="card-link">${manager.Email}</a>
+    <h5 class="card-title">Name: ${manager.name}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Role: ${manager.getRole()}</h6>
+    <p class="card-text">Find me at Office # ${manager.officeNum}</p>
+    <p class="card-text">ID: ${manager.id}</p>
+    <a href="#${manager.email}" class="card-link">${manager.email}</a>
   </div>
 </div>
 `;
@@ -15,13 +16,13 @@ const createEngineer = (engineer) => {
   return `
 <div class="card engineer-card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">Name: ${engineer.Name}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Role: ${engineer.getRole()}</h6>
-    <a href="https://github.com/${engineer.Github}" class="card-link">${
-    engineer.Github
+    <h5 class="card-title">Name: ${engineer.name}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">${engineer.getRole()} </h6>
+    <a href="https://github.com/${engineer.github}" class="card-link">${
+    engineer.github
   }</a>
-    <p class="card-text">ID: ${engineer.ID}</p>
-    <a href="${engineer.Email}" class="card-link">${engineer.Email}</a>
+    <p class="card-text">ID: ${engineer.id}</p>
+    <a href="${engineer.email}" class="card-link">${engineer.email}</a>
   </div>
 </div>
 `;
@@ -31,23 +32,26 @@ const createIntern = (intern) => {
   return `
 <div class="card intern-card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">Name: ${intern.Name}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Role: ${intern.Role}</h6>
-    <p class="card-text">I am atending ${intern.School}</p>
-    <p class="card-text">ID: ${intern.ID}</p>
-    <a href="#{intern.getEmail()}" class="card-link">${intern.Email}</a>
+    <h5 class="card-title">Name: ${intern.name}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Role: ${intern.getRole()}</h6>
+    <p class="card-text">I am atending ${intern.getSchool()}</p>
+    <p class="card-text">ID: ${intern.id}</p>
+    <a href="#${intern.email}" class="card-link">${intern.email}</a>
   </div>
 </div>
 `;
 };
 
 const generateHTML = (data) => {
-  cardArray = [];
-
-  for (let i = 0; data.length; i++) {
+  let cardArray = [];
+console.log("This is the array before iterating", data)
+  for (let i = 0; i < data.length; i++) {
+   
     console.log("Data here", data, 'Iterating!')
+    
     const employee = data[i];
-    const role = employee.role;
+    const role = employee.getRole();
+    console.log(role)
     if (role === "Manager") {
       const managerHTML = createManager(employee);
       console.log(managerHTML);
@@ -58,7 +62,7 @@ const generateHTML = (data) => {
       console.log(internHTML);
       cardArray.push(internHTML);
     }
-    if ("Role" === "Engineer") {
+    if (role === "Engineer") {
      const engineerHTML = createEngineer(employee);
       console.log(engineerHTML);
       cardArray.push(engineerHTML);
