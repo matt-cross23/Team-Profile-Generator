@@ -1,28 +1,30 @@
 
 const createManager = (manager) => {
   return `
-<div class="card manager-card" style="width: 18rem;">
+  <div class='row align-items-center cards'>
+<div class="card manager-card col" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">Name: ${manager.name}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Role: ${manager.getRole()}</h6>
+    <h5 class="card-title display-5">Name: ${manager.name}</h5>
+    <h6 class="card-subtitle mb-2 text-muted lead">Role: ${manager.getRole()}</h6>
     <p class="card-text">Find me at Office # ${manager.officeNum}</p>
     <p class="card-text">ID: ${manager.id}</p>
-    <a href="#${manager.email}" class="card-link">${manager.email}</a>
+    <a href="mailto: ${manager.email}" class="card-link">email me @${manager.email}</a>
   </div>
+</div>
 </div>
 `;
 };
 const createEngineer = (engineer) => {
   return `
-<div class="card engineer-card" style="width: 18rem;">
+<div class="card engineer-card col" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Name: ${engineer.name}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">${engineer.getRole()} </h6>
-    <a href="https://github.com/${engineer.github}" class="card-link">${
+    <h6 class="card-subtitle mb-2 text-muted">Role: ${engineer.getRole()} </h6>
+    <a href="https://github.com/${engineer.github}" class="card-link">Github: ${
     engineer.github
   }</a>
     <p class="card-text">ID: ${engineer.id}</p>
-    <a href="${engineer.email}" class="card-link">${engineer.email}</a>
+    <a href="mailto: ${engineer.email}" class="card-link"> email me @${engineer.email}</a>
   </div>
 </div>
 `;
@@ -30,13 +32,13 @@ const createEngineer = (engineer) => {
 
 const createIntern = (intern) => {
   return `
-<div class="card intern-card" style="width: 18rem;">
+<div class="card intern-card col" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Name: ${intern.name}</h5>
     <h6 class="card-subtitle mb-2 text-muted">Role: ${intern.getRole()}</h6>
-    <p class="card-text">I am atending ${intern.getSchool()}</p>
+    <p class="card-text">I am attending ${intern.getSchool()}</p>
     <p class="card-text">ID: ${intern.id}</p>
-    <a href="#${intern.email}" class="card-link">${intern.email}</a>
+    <a href="mailto: ${intern.email}" class="card-link">email me @${intern.email}</a>
   </div>
 </div>
 `;
@@ -83,14 +85,17 @@ const generateTeam = (employeeHTML) => {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
   <title>Team Profile</title>
 </head>
-<body>
+<body class ="bg-secondary text-black">
+
   <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">The Team: </h1>
+  <div class="container p-2 bd-highlight">
+  <header class= "display-3 w-100"> Generate Your Team with Ease!</header>
   </div>
 </div>
+   <h1 class="d-inline display-4 "> The Team: </h1>
 ${employeeHTML}
 </body>
 </html>
