@@ -4,6 +4,7 @@ const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const Manager = require("./lib/manager");
 const generateHTML = require("./utils/generatehtml");
+const writeFileSync = require('fs').writeFileSync
 
 const employeeArray = [];
 
@@ -93,7 +94,7 @@ const startMenuQuestions = () =>{
       let newEmployee;
 
       if (role == "Engineer") {
-        newEmployee = new Engineer(name, id, email, github);
+        newEmployee = new Engineer(name, id, email, github, role);
         
         console.log(newEmployee, "New Engineer added");
 
@@ -113,21 +114,20 @@ const startMenuQuestions = () =>{
     });
 };
 
-function writeToFile(data) {
-  writeToFile("./dist/scorecard.html", generateHTML(data), "utf8", function (err) {
+const writeScorecard = (data) => {
+  writeFileSync("./dist/scorecard.html", data, /*"utf8"*/ function (err) {
     err ? console.log("error") : console.log("You've created the HTML file!");
   });
 };
+
 
 function init (){
 managerQuestions()
   .then(startMenuQuestions)
   .then((employeeArray) => {
     console.log("Your team is", employeeArray, "!");
-    return generateHTML(employeeArray);
-  })
-  .then((data) => {
-    return writeToFile(data, "utf8");
+
+    writeScorecard( generateHTML(employeeArray));
   })
   .catch((err) => {
     console.log(err);
