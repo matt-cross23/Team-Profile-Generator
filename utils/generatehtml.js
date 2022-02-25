@@ -11,7 +11,7 @@ const createManager = (manager) => {
     <a href="mailto: ${manager.email}" class="card-link">email me @${manager.email}</a>
   </div>
 </div>
-</div>
+
 `;
 };
 const createEngineer = (engineer) => {
@@ -97,8 +97,10 @@ const generateTeam = (employeeHTML) => {
 </div>
    <h1 class="d-inline display-4 "> The Team: </h1>
 ${employeeHTML}
+</div>
 </body>
 </html>
+
 `;
 };
 
