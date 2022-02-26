@@ -5,3 +5,5 @@ This project generates a team of employees based on a manager's input. The funct
 {npm run jest}
 ```
 Once the user answers the prompts which act as promises, a then method is used to return the promise which consolidates the data and places it an object. This object allows the answers to be placed within new instances of the Manager, Intern, Engineer Class. From here, the object is iterated throughout (for loop) and classifies each card based on the getRole() method so HTML can be generated based on employees' roles.  
+
+[Screenshot-image](<img width="960" alt="team-prof" src="https://user-images.githubusercontent.com/88978036/155823460-3bbb3dd8-9005-474c-8762-b6928bde637a.png">)
