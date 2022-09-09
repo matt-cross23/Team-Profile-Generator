@@ -9,5 +9,4 @@ Once the user answers the prompts which act as promises, a then method is used t
 <img width="960" alt="team-prof" src="https://user-images.githubusercontent.com/88978036/155823460-3bbb3dd8-9005-474c-8762-b6928bde637a.png">
 
 ## Here are the links to the walkthrough video
-https://youtu.be/l3Qeer7Sje4
-https://youtu.be/ua5QVkp5QSg
+[Walkthrough](https://youtu.be/ua5QVkp5QSg)
